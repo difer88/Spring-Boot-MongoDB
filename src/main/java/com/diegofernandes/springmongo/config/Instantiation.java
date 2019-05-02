@@ -8,6 +8,14 @@ import org.springframework.context.annotation.Configuration;
 
 import java.util.Arrays;
 
+/**
+ * Class responsible for automatically instantiating mass of data for
+ * tests when initializing the application.
+ *
+ * @author  Diego Fernandes
+ * @version 1.0.1
+ * @since   2019-04-23
+ */
 @Configuration
 public class Instantiation implements CommandLineRunner {
 
