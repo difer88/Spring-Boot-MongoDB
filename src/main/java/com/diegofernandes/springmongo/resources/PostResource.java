@@ -1,8 +1,6 @@
 package com.diegofernandes.springmongo.resources;
 
 import com.diegofernandes.springmongo.domain.Post;
-import com.diegofernandes.springmongo.domain.User;
-import com.diegofernandes.springmongo.dto.UserDTO;
 import com.diegofernandes.springmongo.services.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

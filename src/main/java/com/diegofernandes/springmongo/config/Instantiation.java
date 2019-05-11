@@ -3,6 +3,7 @@ package com.diegofernandes.springmongo.config;
 import com.diegofernandes.springmongo.domain.Post;
 import com.diegofernandes.springmongo.domain.User;
 import com.diegofernandes.springmongo.dto.AuthorDTO;
+import com.diegofernandes.springmongo.dto.CommentDTO;
 import com.diegofernandes.springmongo.repository.PostRepository;
 import com.diegofernandes.springmongo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,6 +57,18 @@ public class Instantiation implements CommandLineRunner {
 
         Post post4 = new Post(null, sdf.parse("05/02/2019"), "Morning walk",
                 "I'm going to walk in the park with my dog !", new AuthorDTO(user3));
+
+        CommentDTO comment1 = new CommentDTO("Awesome !", sdf.parse("14/08/2019"), new AuthorDTO(user2));
+        CommentDTO comment2 = new CommentDTO("Nice...enjoy !", sdf.parse("14/08/2019"), new AuthorDTO(user3));
+        CommentDTO comment3 = new CommentDTO("Send photos !", sdf.parse("20/08/2019"), new AuthorDTO(user3));
+        CommentDTO comment4 = new CommentDTO("It's really important !", sdf.parse("26/10/2019"), new AuthorDTO(user1));
+        CommentDTO comment5 = new CommentDTO("I never forget...", sdf.parse("28/10/2019"), new AuthorDTO(user3));
+        CommentDTO comment6 = new CommentDTO("Don't forget jour sweather !", sdf.parse("05/02/2019"), new AuthorDTO(user2));
+
+        post1.getComments().addAll(Arrays.asList(comment1, comment2));
+        post2.getComments().add(comment3);
+        post3.getComments().addAll(Arrays.asList(comment4, comment5));
+        post4.getComments().add(comment6);
 
         postRepository.saveAll(Arrays.asList(post1, post2, post3, post4));
 
