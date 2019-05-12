@@ -6,6 +6,7 @@ import com.diegofernandes.springmongo.services.exception.ObjectNotFoundException
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,6 +23,10 @@ public class PostService {
 
     public List<Post> findByTitle(String text){
         return repository.findByTitleContainingIgnoreCase(text);
+    }
+
+    public List<Post> fullSearch(String text, Date startDate, Date endDate){
+        return repository.textSearchByTextAndDateRange(text, startDate, endDate);
     }
 
 }

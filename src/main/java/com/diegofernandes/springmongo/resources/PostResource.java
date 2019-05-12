@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -27,6 +28,23 @@ public class PostResource {
         text = URL.decodeParam(text);
         List<Post> list = service.findByTitle(text);
         return  ResponseEntity.ok().body(list);
+    }
+
+    @RequestMapping(value = "fullsearch", method = RequestMethod.GET)
+    public ResponseEntity<List<Post>> fullSearch(
+            @RequestParam(value = "text", defaultValue = "") String text,
+            @RequestParam(value = "startDate", defaultValue = "") String startDateString,
+            @RequestParam(value = "endDate", defaultValue = "") String endDateString){
+
+        text = URL.decodeParam(text);
+
+        Date startDate = URL.convertDate(startDateString, new Date(0L));
+        Date endDate = URL.convertDate(endDateString, new Date(0L));
+
+        List<Post> list = service.fullSearch(text, startDate, endDate);
+
+        return ResponseEntity.ok().body(list);
+
     }
 
 }
