@@ -4,6 +4,7 @@ import com.diegofernandes.springmongo.domain.Post;
 import com.diegofernandes.springmongo.domain.User;
 import com.diegofernandes.springmongo.dto.UserDTO;
 import com.diegofernandes.springmongo.services.UserService;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +21,7 @@ public class UserResource {
     @Autowired
     private UserService service;
 
+    @ApiOperation(value="List all Users")
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<List<UserDTO>> findAll(){
 
@@ -30,6 +32,7 @@ public class UserResource {
         return  ResponseEntity.ok().body(usersListDTO);
     }
 
+    @ApiOperation(value="Find User by ID")
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity<UserDTO> findById(@PathVariable String id){
 
@@ -38,6 +41,7 @@ public class UserResource {
         return  ResponseEntity.ok().body(new UserDTO(obj));
     }
 
+    @ApiOperation(value="Create new User")
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<Void> insert(@RequestBody UserDTO objDTO){
 
@@ -49,6 +53,7 @@ public class UserResource {
         return ResponseEntity.created(uri).build();
     }
 
+    @ApiOperation(value="Delete User by ID")
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<Void> delete(@PathVariable String id){
 
@@ -57,6 +62,7 @@ public class UserResource {
         return  ResponseEntity.noContent().build();
     }
 
+    @ApiOperation(value="Update User by ID")
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public ResponseEntity<Void> update(@RequestBody UserDTO objDTO, @PathVariable String id){
 
@@ -68,6 +74,7 @@ public class UserResource {
 
     }
 
+    @ApiOperation(value="Find Posts by User ID")
     @RequestMapping(value = "/{id}/posts", method = RequestMethod.GET)
     public ResponseEntity<List<Post>> findPosts(@PathVariable String id){
 
